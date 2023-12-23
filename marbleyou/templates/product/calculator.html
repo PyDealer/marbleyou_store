@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section id="calculator">
+  <div class="container py-4" >
+    <div class="d-flex justify-content-center align-items-center" style='margin-top: 5rem;'>
+      <div class="card col-8">
+        <div class="card-header text-white" style="background-color: #537590;">
+          {{ form.title }}
+        </div>
+        <div class="card-body border">
+          <div style="margin-bottom: 1rem;">
+            <b>{{ form.description }}</b>
+          </div>
+          <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  {% endblock content %}

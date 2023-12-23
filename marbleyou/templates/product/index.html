@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Изделия из натурального камня
+{% endblock %}
+{% block content %}
+<div class="container-fluid px-0" 
+style="
+  background-image: url('{% static 'img/SKALS.jpeg' %}');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  margin-top: -7rem;
+  justify-content-center;
+  ">
+<div class="container py-4">
+  <div class="row" style="height: 100vh;">
+      <div class="col-md-7" style='margin-top: 7rem; text-transform: uppercase;'>
+        <p class="text-start fs-3 user-select-none" style="color: #1F415C;" >
+          MARBLEYOU <br>сделает все, чтобы скалы оказались <br>на ваших поверхностях
+        </p>
+      </div>
+          <div class="col-md-3 offset-md-2 align-self-end d-flex justify-content-center" style='margin-bottom: 4rem;'>
+            <div class="vertical ml-auto">
+              <button type="button" class="btn w-100 btn-content btn-sm"
+              style="margin-bottom: 1rem;"
+              data-bs-toggle="modal" data-bs-target="#QuestionModal"
+              >Задать вопрос</button>
+              <div class="modal fade" id="QuestionModal"
+                tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div>
+                          <div class="modal-header text-white" style="background-color: #537590;">
+                            Заказ
+                          </div>
+                          <div class="modal-body">
+                            <form method="post">
+                              {% csrf_token %}
+                              {% crispy q_form %}
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              <a href="{% url 'product:calculator'%}">
+                <button type="button" class="btn w-100 btn-content btn-sm"
+                style="margin-bottom: 1rem;">Калькулятор стоимости</button>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1 class="text-black" style="text-align: center; margin-top: 70px; margin-bottom: 40px;">Изделия из натурального камня</h1>
+
+<div class="container py-4">
+  <div class="row">
+    {% for category in categories %}
+    <div class="col-md-6 mt-4 mb-2">
+      <a href="{% url 'product:products' category.slug %}" style="text-decoration: none;">
+        <div class="card" style="height: 300px;">
+          <div class="h-100 p-5 text-white rounded-3 d-flex flex-column align-items-center justify-content-center"
+          style="background-image: url('{{ category.image.url }}');
+          background-size: cover;
+          background-position: center;"
+          >
+            <h2 class="card-title" style='text-align: center; color: #f8f9fa;'>
+              {{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container px-4 py-5" id="icon-grid">
+  <h2 class="pb-2 border-bottom">Почему marbleyou?</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/exp.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Опыт</h4>
+        <p>13 лет в сфере услуг натурального камня</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/project.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Проекты</h4>
+        <p>Более 300 выполненных проектов</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/sup.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Поставщики</h4>
+        <p>Мы работаем с множеством поставщиков</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/ind.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Индивидуальность</h4>
+        <p>Выполняем работы любой сложности</p>
+      </div>
+    </div>
+  </div>
+  <hr class="featurette-divider">
+</div>
+
+<h3 class="text-center fs-2 mb-4">
+  Натуральный камень в интерьере
+</h3>
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for img in album %}
+    <div class="carousel-item {% if forloop.first %} active {% endif %}">
+      <img src="{{ img.image.url }}" class="d-block w-100 img-fluid" style="object-fit: cover; height: 700px;">
+    </div>
+    {% endfor %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next"
+    type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Следующий</span>
+    </button>
+  </div>
+</div>
+
+<div class="container px-4 py-5" id="icon-grid">
+  <h2 class="pb-2 border-bottom">Как мы работаем</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/choice.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Выбор</h4>
+        <p>Консультируем вас в подборе камня</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/measuring.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Замер</h4>
+        <p>Замеряем поверхности и уточняем все нюансы</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/estimate.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Проект</h4>
+        <p>Разрабатываем проект и смету по замерам и вашему выбору</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <img src="{% static 'img/icons/montage.png' %}" class="bi text-muted flex-shrink-0 me-3">
+      <div>
+        <h4 class="fw-bold mb-2">Монтаж</h4>
+        <p>Предлагаем услуги монтажа изделий, если это необходимо</p>
+      </div>
+    </div>
+  </div>
+  <hr class="featurette-divider">
+</div>
+
+<section id="question">
+  <div class="container py-4" >
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-dismissible alert-success text-center">
+          <strong>{{message}}</strong>
+        </div>
+     {% endfor %}
+    {% else %}
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="card col-8">
+        <div class="card-header text-white" style="background-color: #537590;">
+          {{ form.title }}
+        </div>
+        <div class="card-body border rounded-3 bg-light">
+          <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

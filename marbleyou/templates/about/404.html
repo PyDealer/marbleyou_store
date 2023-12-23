@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+<div class="container py-4 text-center"style="margin-top: 3rem;">
+  <h1 class="display-4">ERROR 404</h1>
+  <p class="lead">Страница с адресом {{ request.build_absolute_uri }} не найдена!</p>
+  <a href="{% url 'product:index' %}" class="btn btn-primary">Вернуться на главную</a>
+</div>
+{% endblock %}

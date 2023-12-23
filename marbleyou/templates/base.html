@@ -1,0 +1,29 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/my_css.css' %}">
+    <script src="{% static 'js/favorites.js' %}"></script>
+    <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+  </head>
+  <body>
+    {% include "includes/header.html" %}
+    <main>
+      <div>
+          {% block content %}
+          <!!{% include 'includes/modal_button.html' %}!!>
+          {% endblock %}
+      </div>
+      {% include 'includes/modal_frame.html' %}
+    </main>
+    {% include "includes/footer.html" %}
+  </body>
+</html>

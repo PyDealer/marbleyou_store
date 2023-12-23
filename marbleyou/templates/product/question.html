@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container py-4" >
+  {% if messages %}
+  <div class="col-12" style='margin-top: 5rem;'>
+    {% for message in messages %}
+      <div class="alert alert-dismissible alert-success text-center">
+        <strong>{{message}}</strong>
+      </div>
+    </div>
+   {% endfor %}
+  {% else %}
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card col-8" style='margin-top: 5rem;'>
+      <div class="card-header text-white" style="background-color: #537590;">
+        {{ form.title }}
+      </div>
+      <div class="card-body border rounded-3 bg-light">
+        <form method="post">
+          {% csrf_token %}
+          {% crispy form %}
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}

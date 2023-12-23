@@ -1,0 +1,52 @@
+{% load static %}
+<div class="container" id="modal_list">
+  {% csrf_token %}
+    {% for stone in favorites_list_modal %}
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ stone.image.url }}"
+          style="height: 100px; width: 200px; object-fit: cover;"
+          class="d-block w-100 img-fluid">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">{{ stone.name }}</h5>
+              <div class="d-flex justify-content-end">
+                <form method="post" onsubmit="addToFavorites(event)">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                  <input type="hidden" name="type" value="{{ stone.name }}">
+                  <input type="hidden" name="stone_id" value="{{ stone.id }}" data-stone-id="{{ stone.id }}" data-url="{% url 'favorites:add' id=stone.id %}">
+                  <input type="hidden" name="url_from" value="{{ request.path }}">
+                  <input type="image" src="{% static 'img/icons/trash.svg' %}" alt="Favorites" name="favorites_button" id="{{ stone.id }}_button" style="width: 20px; height: 20px;">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+    <div class="modal-footer">
+      {% csrf_token %}
+      {% if favorites_ids|length > 0 %}
+      <a href="{% url 'favorites:favorites_list' %}">
+        <button type="button"
+        class="btn btn-content btn-sm align-items-start"
+        style="margin-right: 2rem;">
+          Заказать</button>
+      </a>
+      <form class="clear-favorites-form" method="post" onsubmit="clearFavorites(event)">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <input type="hidden" name="url" value="{% url 'favorites:favorites_clear' %}">
+        <input type="image" src="{% static 'img/icons/trash.svg' %}" alt="Favorites_clear" name="clear" style="width: 20px; height: 20px;">
+      </form>
+      {% else %}
+      <p>Список избранного пуст</p>
+      {% endif %}
+    </div>
+  </div>
+
+  

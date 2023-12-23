@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div style='margin-top: 5rem;'>
+  <h3 class="text-center">Расчет стоимости производства изделия</h1>
+</div>
+{% if 'ERROR_CALCULATOR' in process_form %}
+<div class="container py-4 text-center">
+  <h1 class="display-4">{{ process_form.ERROR_CALCULATOR }}</h1>
+</div>
+{% else %}
+<div class="container py-4">
+  <div class="col-md-6 offset-md-3">
+    <table class="table table-hover">
+      <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Цена</th>
+      </tr>
+      <tbody>
+        {% for key, value in process_form.items %} 
+        <tr>
+          <th scope="row">{{ key }}</th>
+          <td>{{ value.0 }}</td>
+          <td>{{ value.1 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

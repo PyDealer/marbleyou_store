@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% csrf_token %}
+<div class="container py-4" style='margin-top: 1rem;'>
+  <h2 class="text-center" style='margin: 3rem;'>Избранное</h2>
+  <div class="row justify-content-center">
+    {% for stone in favorites_list_modal %}
+    <div class="card mb-5" style="max-width: 800px; border: 0;">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <a href="{{ stone.url_from }}" class="text-decoration-none text-dark">
+            <img src="{{ stone.image.url }}"
+              style="height: 200px; width:400px; object-fit: cover; display: none;"
+              class="d-block w-100 img-fluid rounded-top">
+          </a>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <a href="{{ stone.url_from }}" class="text-decoration-none text-dark">
+              <h3 class="card-title">{{ stone.name }}</h3>
+              </a>
+              <div class="d-flex justify-content-end">
+              {% include 'includes/favorites.html' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+  <div class="container py-4" >
+    {% if messages %}
+    <div class="row justify-content-center">
+      <div class="col-8">
+        {% for message in messages %}
+          <div class="alert alert-dismissible alert-success text-center">
+            <strong>{{message}}</strong>
+          </div>
+        </div>
+       {% endfor %}
+      </div>
+    {% else %}
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="card col-8">
+        <div class="card-header text-white" style="background-color: #537590;">
+          {{ o_form.title }}
+        </div>
+        <div class="card-body border rounded-3 bg-light">
+          <form method="post">
+            {% csrf_token %}
+            {% crispy o_form %}
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+{% endblock content %}

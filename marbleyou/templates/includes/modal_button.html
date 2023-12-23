@@ -1,0 +1,8 @@
+{% load static %}
+<input type="image" src="{% static 'img/icons/heart.svg' %}"
+style="width: 20px; height: 20px; margin-bottom: 4px;"
+data-bs-toggle="modal"
+data-bs-target="#FavoritesModal"
+aria-expanded="false">
+<small class="text-muted" style="margin-right: 1rem;"
+id="count_favorites">{{ count }}</small>

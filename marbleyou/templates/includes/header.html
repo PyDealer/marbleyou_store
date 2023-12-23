@@ -1,0 +1,65 @@
+{% load static %}
+{% if request.resolver_match.view_name == 'product:index' %}
+<header>
+  <div
+  class="bg-image"
+  style="
+    background-image: url('{% static 'img/header_image.jpeg' %}');
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <nav class="navbar navbar-expand-lg navbar-light user-select-none">
+    <div class="container">
+      <a class="navbar-brand user-select-none" style="color: #1F415C;" href="{% url 'product:index' %}">
+        <img src="{% static 'img/logo.png' %}" width="60" height="60" class="d-inline-block align-top" alt="">
+      </a>
+      <button class="navbar-toggler ms-auto" style="margin-right: 1rem;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Переключатель навигации">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarToggleExternalContent">
+        <div class="navbar-nav" style="color: #1F415C;">
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tabletop' %}" style="color: #1F415C;">Столешницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'windowsill' %}" style="color: #1F415C;">Подоконники</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'ladder' %}" style="color: #1F415C;">Лестницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tile' %}" style="color: #1F415C; margin-right: 20px;">Плитка</a>
+          <a class="nav-link user-select-none" href="{% url 'about:contacts' %}" style="color: #1F415C; ">Контакты</a>
+          <a class="nav-link disabled d-none d-md-inline" style="color: #1F415C; margin-right: 20px;">+7 (977) 414-08-93</a>
+          <a class="nav-link d-md-none" style="color: #1F415C; margin-right: 20px;" href="tel:+79774140893">+7 (977) 414-08-93</a>
+        </div>
+      </div>
+      <a class="nav-link user-select-none">{% include 'includes/modal_button.html' %}</a>
+    </div>
+  </nav>
+</header>
+</div>
+{% else %}
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-image: url('{% static 'img/header_image.jpeg' %}');
+    background-size: cover;
+    background-position: center;
+    ">
+    <div class="container">
+      <a class="navbar-brand user-select-none" style="color: #1F415C;" href="{% url 'product:index' %}">
+        <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+        MARBLEYOU
+      </a>
+      <button class="navbar-toggler ms-auto" style="margin-right: 1rem;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Переключатель навигации">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarToggleExternalContent">
+        <div class="navbar-nav" style="color: #1F415C;">
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tabletop' %}" style="color: #1F415C;">Столешницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'windowsill' %}" style="color: #1F415C;">Подоконники</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'ladder' %}" style="color: #1F415C;">Лестницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tile' %}" style="color: #1F415C; margin-right: 20px;">Плитка</a>
+          <a class="nav-link user-select-none" href="{% url 'about:contacts' %}" style="color: #1F415C; ">Контакты</a>
+          <a class="nav-link disabled d-none d-md-inline" style="color: #1F415C; margin-right: 20px;">+7 (977) 414-08-93</a>
+          <a class="nav-link d-md-none" style="color: #1F415C; margin-right: 20px;" href="tel:+79774140893">+7 (977) 414-08-93</a>
+        </div>
+      </div>
+      <a class="nav-link user-select-none">{% include 'includes/modal_button.html' %}</a>
+    </div>
+  </nav>
+</header>
+{% endif %}

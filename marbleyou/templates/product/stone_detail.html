@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+  {{ stone.name }}
+{% endblock %}
+{% block content %}
+<div class="container py-4" style='margin-top: 5rem;'>
+  <div class="row featurette">
+    <div class="col-md-4 order-md-2">
+      <h1 class="text-center" style="font-size: 30px;">{{ stone.name }}</h1>
+      <p class="lead" style="margin-top: 2rem;">{{ stone.description }}</p>
+    </div>
+    <div class="col-md-8" style="height: 500px;">
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          {% for img in album %}
+          <div class="carousel-item {% if forloop.first %} active {% endif %}">
+            <img src="{{ img.image.url }}" class="d-block w-100 img-fluid" style="object-fit: cover; height: 500px;">
+          </div>
+          {% endfor %}
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+          </button>
+          <button class="carousel-control-next"
+          type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="offset-md-6 position-relative" style="margin-top: -3rem; z-index: 1;">
+    <div class="d-flex justify-content-center">
+      <a href="#calculate">
+        <button type="button" class="btn btn-content">Заказать</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container py-4">
+  <hr class="featurette-divider">
+  <div class="col-md-8 offset-md-2 d-flex justify-content-center">
+    <p style="font-size: 20px;">{{ stone.second_description }}</p>
+  </div>
+</div>
+{% endblock content %}

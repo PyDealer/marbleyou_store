@@ -1,0 +1,14 @@
+{% load static %}
+<div class="modal fade" id="FavoritesModal" tabindex="-1" aria-labelledby="FavoritesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="FavoritesModalLabel">Избранное</h1>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'includes/modal_list.html' %}
+      </div>
+    </div>
+  </div>
+</div>

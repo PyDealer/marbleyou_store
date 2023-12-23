@@ -1,0 +1,13 @@
+{% load static %}
+{% csrf_token %}
+<form class="add-to-favorites-form" method="post" onsubmit="addToFavorites(event)">
+  <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+  <input type="hidden" name="type" value="{{ stone.name }}">
+  <input type="hidden" name="stone_id" value="{{ stone.id }}" data-stone-id="{{ stone.id }}" data-url="{% url 'favorites:add' id=stone.id %}">
+  <input type="hidden" name="url_from" value="{{ request.path }}">
+  {% if stone.id in favorites_ids %}
+  <input type="image" src="{% static 'img/icons/heart_fill.svg' %}" alt="Favorites" name="favorites_button" id="{{ stone.id }}_button">
+  {% else %}
+  <input type="image" src="{% static 'img/icons/heart.svg' %}" alt="Favorites" name="favorites_button" id="{{ stone.id }}_button">
+  {% endif %}
+</form>
