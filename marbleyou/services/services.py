@@ -16,14 +16,23 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-work_price_instance = WorkPrice.objects.get(id=1)
-CUT_PRICE = work_price_instance.cut
-EDGE_RICE = work_price_instance.edge
-AVERAGE_PRICE = work_price_instance.average
-HOB_PRICE = work_price_instance.hob
-SINK_PRICE = work_price_instance.sink
-TAP_PRICE = work_price_instance.tap
-DROPPER_PRICE = work_price_instance.dropper
+try:
+    work_price_instance = WorkPrice.objects.get(id=1)
+    CUT_PRICE = work_price_instance.cut
+    EDGE_RICE = work_price_instance.edge
+    AVERAGE_PRICE = work_price_instance.average
+    HOB_PRICE = work_price_instance.hob
+    SINK_PRICE = work_price_instance.sink
+    TAP_PRICE = work_price_instance.tap
+    DROPPER_PRICE = work_price_instance.dropper
+except:
+    CUT_PRICE = 700
+    EDGE_RICE = 1300
+    AVERAGE_PRICE = 13000
+    HOB_PRICE = 4500
+    SINK_PRICE = 4000
+    TAP_PRICE = 1500
+    DROPPER_PRICE = 900
 
 SERVICE_EMAIL = os.getenv('SMTP')
 ERROR_MESSAGE_FOR_USER = {

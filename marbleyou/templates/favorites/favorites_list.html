@@ -10,7 +10,7 @@
     <div class="card mb-5" style="max-width: 800px; border: 0;">
       <div class="row g-0">
         <div class="col-md-6">
-          <a href="{{ stone.url_from }}" class="text-decoration-none text-dark">
+          <a href="{% url 'product:stone_detail' stone_slug=stone.slug %}" class="text-decoration-none text-dark">
             <img src="{{ stone.image.url }}"
               style="height: 200px; width:400px; object-fit: cover; display: none;"
               class="d-block w-100 img-fluid rounded-top">
@@ -19,7 +19,7 @@
         <div class="col-md-6">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <a href="{{ stone.url_from }}" class="text-decoration-none text-dark">
+              <a href="{% url 'product:stone_detail' stone_slug=stone.slug %}" class="text-decoration-none text-dark">
               <h3 class="card-title">{{ stone.name }}</h3>
               </a>
               <div class="d-flex justify-content-end">

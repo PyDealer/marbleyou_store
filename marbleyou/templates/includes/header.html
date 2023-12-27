@@ -18,6 +18,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarToggleExternalContent">
+        <div class="navbar-nav d-md-none bg-image"
+        style="color: #1F415C;
+        background-image: url('{% static 'img/header_image.jpeg' %}');
+        background-size: cover;
+        background-position: center;">
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tabletop' %}" style="color: #1F415C;">Столешницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'windowsill' %}" style="color: #1F415C;">Подоконники</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'ladder' %}" style="color: #1F415C;">Лестницы</a>
+          <a class="nav-link user-select-none" href="{% url 'product:products' 'tile' %}" style="color: #1F415C; margin-right: 20px;">Плитка</a>
+          <a class="nav-link user-select-none" href="{% url 'about:contacts' %}" style="color: #1F415C; ">Контакты</a>
+          <a class="nav-link d-md-none" style="color: #1F415C; margin-right: 20px;" href="tel:+79774140893">+7 (977) 414-08-93</a>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end disabled d-none d-md-inline">
         <div class="navbar-nav" style="color: #1F415C;">
           <a class="nav-link user-select-none" href="{% url 'product:products' 'tabletop' %}" style="color: #1F415C;">Столешницы</a>
           <a class="nav-link user-select-none" href="{% url 'product:products' 'windowsill' %}" style="color: #1F415C;">Подоконники</a>
@@ -25,7 +39,6 @@
           <a class="nav-link user-select-none" href="{% url 'product:products' 'tile' %}" style="color: #1F415C; margin-right: 20px;">Плитка</a>
           <a class="nav-link user-select-none" href="{% url 'about:contacts' %}" style="color: #1F415C; ">Контакты</a>
           <a class="nav-link disabled d-none d-md-inline" style="color: #1F415C; margin-right: 20px;">+7 (977) 414-08-93</a>
-          <a class="nav-link d-md-none" style="color: #1F415C; margin-right: 20px;" href="tel:+79774140893">+7 (977) 414-08-93</a>
         </div>
       </div>
       <a class="nav-link user-select-none">{% include 'includes/modal_button.html' %}</a>

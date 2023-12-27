@@ -9,8 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 CSRF_FAILURE_VIEW = 'about.views.csrf_failure'
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
 
-DEBUG = os.getenv('DEBUG', default=False)
+DEBUG = False
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*').split(',')
 
@@ -107,7 +108,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = '/media/'
 
 MEDIA_URL = '/media/'
 

@@ -30,13 +30,14 @@ class OrderFormMixin(FormView, FormMixin):
     '''Миксин формы заказа'''
     success_message = '''Спасибо за заказ!
     В скором времени мы вам ответим'''
-    form_class = FeedbackForm
+    form_class = OrderForm
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        form.save()
-        order = Order(form)
-        order.mail()
+    def form_valid(self, o_form):
+        response = super().form_valid(o_form)
+        o_form.save()
+        obj = self.get_object()
+        url = self.request.build_absolute_uri()
+        Order(o_form, obj, url).main()
         messages.success(self.request, self.success_message)
         return response
 
@@ -154,7 +155,7 @@ class ProductDetailView(DetailView):
         return context
 
 
-class StoneDetailView(DetailView):
+class StoneDetailView(DetailView, OrderFormMixin):
     '''Страница камня'''
     template_name = 'product/stone_detail.html'
     model = Stone
@@ -166,13 +167,19 @@ class StoneDetailView(DetailView):
         )
     success_message = '''Спасибо за заказ!
     В скором времени мы вам ответим'''
-    form_class = FeedbackForm
 
+    def get_success_url(self):
+        obj = self.get_object()
+        return reverse(
+            'product:stone_detail',
+            kwargs={'stone_slug': obj.slug})
 
     def get_context_data(self, **kwargs):
+        print(self.request.path)
         context = super().get_context_data(**kwargs)
         album = StoneAlbum.objects.filter(stone=self.object)
         context['album'] = album
+        context['o_form'] = self.form_class
         return context
 
 

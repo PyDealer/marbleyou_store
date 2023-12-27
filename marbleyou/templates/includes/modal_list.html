@@ -5,21 +5,25 @@
     <div class="card mb-3" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="{{ stone.image.url }}"
-          style="height: 100px; width: 200px; object-fit: cover;"
-          class="d-block w-100 img-fluid">
+          <a href="{% url 'product:stone_detail' stone_slug=stone.slug %}" class="text-decoration-none text-dark">
+            <img src="{{ stone.image.url }}"
+            style="height: 100px; width: 200px; object-fit: cover;"
+            class="d-block w-100 img-fluid">
+          </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <h5 class="card-title">{{ stone.name }}</h5>
+              <a href="{% url 'product:stone_detail' stone_slug=stone.slug %}" class="text-decoration-none text-dark">
+                <h5 class="card-title">{{ stone.name }}</h5>
+              </a>
               <div class="d-flex justify-content-end">
                 <form method="post" onsubmit="addToFavorites(event)">
                   <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                   <input type="hidden" name="type" value="{{ stone.name }}">
                   <input type="hidden" name="stone_id" value="{{ stone.id }}" data-stone-id="{{ stone.id }}" data-url="{% url 'favorites:add' id=stone.id %}">
                   <input type="hidden" name="url_from" value="{{ request.path }}">
-                  <input type="image" src="{% static 'img/icons/trash.svg' %}" alt="Favorites" name="favorites_button" id="{{ stone.id }}_button" style="width: 20px; height: 20px;">
+                  <input type="image" src="{% static 'img/icons/trash.png' %}" alt="Favorites" name="favorites_button" id="{{ stone.id }}_button" style="width: 20px; height: 20px;">
                 </form>
               </div>
             </div>
@@ -41,7 +45,7 @@
       <form class="clear-favorites-form" method="post" onsubmit="clearFavorites(event)">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <input type="hidden" name="url" value="{% url 'favorites:favorites_clear' %}">
-        <input type="image" src="{% static 'img/icons/trash.svg' %}" alt="Favorites_clear" name="clear" style="width: 20px; height: 20px;">
+        <input type="image" src="{% static 'img/icons/trash.png' %}" alt="Favorites_clear" name="clear" style="width: 20px; height: 20px;">
       </form>
       {% else %}
       <p>Список избранного пуст</p>

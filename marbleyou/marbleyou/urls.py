@@ -5,10 +5,10 @@ from django.urls import include, path
 from django.conf import settings
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('product.urls')),
     path('favorites/', include('favorites.urls')),
     path('about/', include('about.urls')),
-    path('admin/', admin.site.urls),
 ]
 
 handler404 = 'about.views.page_404'

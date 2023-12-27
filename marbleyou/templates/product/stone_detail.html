@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}
   {{ stone.name }}
 {% endblock %}
@@ -32,9 +33,31 @@
   </div>
   <div class="offset-md-6 position-relative" style="margin-top: -3rem; z-index: 1;">
     <div class="d-flex justify-content-center">
-      <a href="#calculate">
-        <button type="button" class="btn btn-content">Заказать</button>
-      </a>
+      <button type="button"
+      class="btn btn-content"
+      data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Заказать</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal"
+tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div>
+          <div class="modal-header text-white" style="background-color: #537590;">
+            Заказ
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              {% csrf_token %}
+              {% crispy o_form %}
+            </form>
+          </div>
+        </div>
     </div>
   </div>
 </div>

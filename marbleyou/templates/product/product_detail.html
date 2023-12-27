@@ -9,7 +9,7 @@
   <div class="row featurette">
     <div class="col-md-4 order-md-2">
       <h1 class="text-center" style="font-size: 30px;">{{ product.title }}</h1>
-      <p class="lead" style="margin-top: 2rem;">{{ product.description }}</p>
+      <p class="lead d-none d-md-block" style="margin-top: 2rem;">{{ product.description }}</p>
     </div>
     <div class="col-md-8" style="height: 500px;">
       <div id="carouselExample" class="carousel slide">
@@ -108,7 +108,7 @@ aria-hidden="true">
     {% for stone in stones %}
     <div class="col-md-6 mt-4 mb-2">
       <div class="card" >
-        <a href="{% url 'product:stone_detail' category_slug=product.category.slug detail_prod_slug=product.slug stone_slug=stone.slug %}">
+        <a href="{% url 'product:stone_detail' stone_slug=stone.slug %}">
           <img src="{{ stone.image.url }}"
             style="height: 500px; width:700px; object-fit: cover; display: none;"
             class="d-block w-100 img-fluid rounded-top">

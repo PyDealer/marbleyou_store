@@ -13,23 +13,16 @@ function addToFavorites(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
-        //var sessionFavorites = document.getElementById("session-favorites");
-        //var sessionFavoritesList = document.getElementById("session-list");
         var sessionFavoritesCount = document.getElementById("count_favorites");
         var sessionModalList = document.getElementById("modal_list");
         var response = JSON.parse(xhr.responseText);
-        //var favoritesHTML = JSON.stringify(response.data);
-        //sessionFavorites.innerHTML = favoritesHTML;
-        //sessionFavoritesList.innerHTML = favoritesHTML;
         sessionFavoritesCount.innerHTML = response.count;
         if (response.status){
-          favoritesButton.src = "/static/img/icons/Heart_fill.svg";
+          favoritesButton.src = "/static/img/icons/heart_fill.png";
         }else{
-          favoritesButton.src = "/static/img/icons/Heart.svg";
+          favoritesButton.src = "/static/img/icons/heart.png";
         };
-        //var modallistHTML = JSON.stringify(response.modal_list);
         sessionModalList.innerHTML = response.modal_list
-        //sessionFavorites.innerHTML = response.data;
       }
     }
   };
@@ -55,7 +48,7 @@ function clearFavorites(event) {
         for (var i = 0; i < stoneIds.length; i++){
           var stoneId = document.getElementById(stoneIds[i]+"_button");
           var favoritesButton = document.getElementById(stoneId.id);
-          favoritesButton.src = "/static/img/icons/Heart.svg";
+          favoritesButton.src = "/static/img/icons/heart.png";
         };
         sessionFavoritesCount.innerHTML = 0;
         sessionModalList.innerHTML = response.modal_list

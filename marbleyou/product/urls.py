@@ -12,7 +12,7 @@ urlpatterns = [
      path('product/<slug:category_slug>/<slug:detail_prod_slug>/',
           views.ProductDetailView.as_view(),
           name='product_detail'),
-     path('product/<slug:category_slug>/<slug:detail_prod_slug>/<slug:stone_slug>',
+     path('<slug:stone_slug>/',
           views.StoneDetailView.as_view(),
           name='stone_detail'),
      path('result/', views.ResultTemplateView.as_view(),
